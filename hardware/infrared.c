@@ -1,7 +1,7 @@
 #include "stm32f10x.h"                  // Device header
 #include "delay.h"
 
-uint16_t count;
+uint16_t count1;
 
 void INFRARED_Init(void){
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
@@ -33,14 +33,14 @@ void INFRARED_Init(void){
 	
 }
 
-uint16_t Get_Count(void){
-	return count;
+uint16_t Get_Count1(void){
+	return count1;
 }
 
 void EXTI15_10_IRQHandler(void){
 	if(EXTI_GetITStatus(EXTI_Line14) == SET){
 		if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_14) == 0){
-			count ++;
+			count1 ++;
 		}
 		EXTI_ClearITPendingBit(EXTI_Line14);
 	}
