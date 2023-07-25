@@ -28,3 +28,4 @@
 .\objects\infrared.o: .\lib\stm32f10x_usart.h
 .\objects\infrared.o: .\lib\stm32f10x_wwdg.h
 .\objects\infrared.o: .\lib\misc.h
+.\objects\infrared.o: .\lib\delay.h
