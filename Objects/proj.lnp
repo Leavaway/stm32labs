@@ -28,6 +28,7 @@
 ".\objects\stm32f10x_usart.o"
 ".\objects\stm32f10x_wwdg.o"
 ".\objects\delay.o"
+".\objects\timer.o"
 ".\objects\led.o"
 ".\objects\key.o"
 ".\objects\buzzer.o"
