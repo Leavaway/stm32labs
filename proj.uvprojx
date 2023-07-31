@@ -685,16 +685,6 @@
               <FileType>5</FileType>
               <FilePath>.\system\Delay.h</FilePath>
             </File>
-            <File>
-              <FileName>timer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\system\timer.c</FilePath>
-            </File>
-            <File>
-              <FileName>timer.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\hardware\timer.h</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -731,16 +721,6 @@
               <FilePath>.\hardware\buzzer.h</FilePath>
             </File>
             <File>
-              <FileName>light.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\hardware\light.c</FilePath>
-            </File>
-            <File>
-              <FileName>light.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\hardware\light.h</FilePath>
-            </File>
-            <File>
               <FileName>OLED.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\hardware\OLED.c</FilePath>
@@ -774,6 +754,16 @@
               <FileName>CountSensor.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\hardware\CountSensor.h</FilePath>
+            </File>
+            <File>
+              <FileName>PWM.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\hardware\PWM.c</FilePath>
+            </File>
+            <File>
+              <FileName>PWM.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\hardware\PWM.h</FilePath>
             </File>
           </Files>
         </Group>
