@@ -6,15 +6,9 @@ void PWM_Init(void){
 	
 	GPIO_InitTypeDef GPIO_InitStructure;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_Init(GPIOA, &GPIO_InitStructure);
-	
-	GPIO_InitTypeDef GPIO_InitStructure1;
-	GPIO_InitStructure1.GPIO_Mode = GPIO_Mode_Out_PP;
-	GPIO_InitStructure1.GPIO_Pin = GPIO_Pin_4|GPIO_Pin_5;
-    GPIO_InitStructure1.GPIO_Speed = GPIO_Speed_50MHz;
-    GPIO_Init(GPIOA, &GPIO_InitStructure1);
 	
 	TIM_InternalClockConfig(TIM2);
 	//TIM_ETRClockMode2Config(TIM2, TIM_ExtTRGPSC_OFF, TIM_ExtTRGPolarity_NonInverted, 0x09);
@@ -23,7 +17,7 @@ void PWM_Init(void){
 	TIM_TimeBaseInitStructure.TIM_ClockDivision = TIM_CKD_DIV1;
 	TIM_TimeBaseInitStructure.TIM_CounterMode = TIM_CounterMode_Up;
 	TIM_TimeBaseInitStructure.TIM_Period = 100 - 1;//ARR
-	TIM_TimeBaseInitStructure.TIM_Prescaler = 7 - 1;//PSC
+	TIM_TimeBaseInitStructure.TIM_Prescaler = 720 - 1;//PSC
 	TIM_TimeBaseInitStructure.TIM_RepetitionCounter = 0;
 	TIM_TimeBaseInit(TIM2, &TIM_TimeBaseInitStructure);
 	
@@ -33,7 +27,7 @@ void PWM_Init(void){
 	TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
 	TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
 	TIM_OCInitStructure.TIM_Pulse = 0;//CCR
-	TIM_OC3Init(TIM2, &TIM_OCInitStructure);
+	TIM_OC1Init(TIM2, &TIM_OCInitStructure);
 	
 	TIM_Cmd(TIM2, ENABLE);
 	
@@ -41,7 +35,11 @@ void PWM_Init(void){
 }
 
 void PWM_Set_Compare(uint16_t i){
-	TIM_SetCompare3(TIM2, i);
+	TIM_SetCompare1(TIM2, i);
+}
+
+void PWM_SetPrescaler(uint16_t prescaler){
+	TIM_PrescalerConfig(TIM2, prescaler, TIM_PSCReloadMode_Immediate);
 }
 
 

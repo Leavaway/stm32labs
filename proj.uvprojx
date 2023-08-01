@@ -685,6 +685,16 @@
               <FileType>5</FileType>
               <FilePath>.\system\Delay.h</FilePath>
             </File>
+            <File>
+              <FileName>timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\system\timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>timer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\system\timer.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -764,6 +774,26 @@
               <FileName>PWM.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\hardware\PWM.h</FilePath>
+            </File>
+            <File>
+              <FileName>IC.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\hardware\IC.c</FilePath>
+            </File>
+            <File>
+              <FileName>IC.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\hardware\IC.h</FilePath>
+            </File>
+            <File>
+              <FileName>encoder.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\hardware\encoder.c</FilePath>
+            </File>
+            <File>
+              <FileName>encoder.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\hardware\encoder.h</FilePath>
             </File>
           </Files>
         </Group>

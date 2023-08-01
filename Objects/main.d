@@ -30,5 +30,6 @@
 .\objects\main.o: .\lib\misc.h
 .\objects\main.o: .\lib\Delay.h
 .\objects\main.o: .\hardware\OLED.h
-.\objects\main.o: .\hardware\PWM.h
 .\objects\main.o: .\hardware\key.h
+.\objects\main.o: .\hardware\encoder.h
+.\objects\main.o: .\system\timer.h
