@@ -32,4 +32,4 @@
 .\objects\main.o: .\hardware\OLED.h
 .\objects\main.o: .\hardware\key.h
 .\objects\main.o: .\hardware\encoder.h
-.\objects\main.o: .\system\timer.h
+.\objects\main.o: .\hardware\ad.h

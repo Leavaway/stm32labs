@@ -701,16 +701,6 @@
           <GroupName>hardware</GroupName>
           <Files>
             <File>
-              <FileName>led.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\hardware\led.c</FilePath>
-            </File>
-            <File>
-              <FileName>led.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\hardware\led.h</FilePath>
-            </File>
-            <File>
               <FileName>key.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\hardware\key.c</FilePath>
@@ -744,16 +734,6 @@
               <FileName>OLED_Font.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\hardware\OLED_Font.h</FilePath>
-            </File>
-            <File>
-              <FileName>infrared.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\hardware\infrared.c</FilePath>
-            </File>
-            <File>
-              <FileName>infrared.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\hardware\infrared.h</FilePath>
             </File>
             <File>
               <FileName>CountSensor.c</FileName>
@@ -794,6 +774,16 @@
               <FileName>encoder.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\hardware\encoder.h</FilePath>
+            </File>
+            <File>
+              <FileName>ad.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\hardware\ad.c</FilePath>
+            </File>
+            <File>
+              <FileName>ad.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\hardware\ad.h</FilePath>
             </File>
           </Files>
         </Group>

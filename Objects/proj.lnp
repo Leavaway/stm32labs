@@ -29,15 +29,14 @@
 ".\objects\stm32f10x_wwdg.o"
 ".\objects\delay.o"
 ".\objects\timer.o"
-".\objects\led.o"
 ".\objects\key.o"
 ".\objects\buzzer.o"
 ".\objects\oled.o"
-".\objects\infrared.o"
 ".\objects\countsensor.o"
 ".\objects\pwm.o"
 ".\objects\ic.o"
 ".\objects\encoder.o"
+".\objects\ad.o"
 --strict --scatter ".\Objects\proj.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
