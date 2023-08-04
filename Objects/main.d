@@ -30,6 +30,5 @@
 .\objects\main.o: .\lib\misc.h
 .\objects\main.o: .\lib\Delay.h
 .\objects\main.o: .\hardware\OLED.h
-.\objects\main.o: .\hardware\key.h
-.\objects\main.o: .\hardware\encoder.h
-.\objects\main.o: .\hardware\ad.h
+.\objects\main.o: .\hardware\serial.h
+.\objects\main.o: D:\acsbooks\ARM\ARMCC\Bin\..\include\stdio.h

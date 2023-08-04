@@ -1,20 +1,25 @@
 #include "stm32f10x.h"                  // Device header
 #include "Delay.h"
 #include "OLED.h"
-#include "key.h"
-#include "encoder.h"
-#include "ad.h"
+#include "serial.h"
+#include "stdio.h"
+
 
 
 int main(void) {
 	OLED_Init();
-	AD_Init();
 
+	Serial_Init();
 	
+	Serial_SendData(0x42);
+	uint8_t arr[] = {0x41,0x42,0x43};
+	Serial_SendArray(arr, 3);
+	Serial_SendString("Helloworld\r\n");
+	int16_t i = 16/10;
+	Serial_SendNum(12345,5);
+	printf("num=%d\r\n",777);
     while(1){
-		OLED_ShowNum(1,5,AD_val[0],4);
-		OLED_ShowNum(1,5,AD_val[1],4);
-		Delay_ms(100);
+
 	}; // Add infinite loop at the end to keep the microcontroller running
 
     return 0;
@@ -29,6 +34,8 @@ void TIM2_IRQHandler(void){
 }
 */
 
-
+int fputc(int ch, FILE *f){
+	Serial_SendData(ch);
+}
 
 
