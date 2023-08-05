@@ -1,5 +1,7 @@
 #include "stm32f10x.h"                  // Device header
 
+
+
 void Serial_Init(void){
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
@@ -71,6 +73,12 @@ void Serial_SendNum(uint32_t num, int16_t len){
 		Serial_SendData((num/Get_TenPow(i))+0x30);
 		num = num % Get_TenPow(i);
 	}
+}
+
+void Serial_SendPacket(uint8_t *packet){
+	Serial_SendData(0xFF);
+	Serial_SendArray(packet,4);
+	Serial_SendData(0xFE);
 }
 
 

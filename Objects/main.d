@@ -32,4 +32,6 @@
 .\objects\main.o: .\hardware\OLED.h
 .\objects\main.o: .\hardware\serial.h
 .\objects\main.o: D:\acsbooks\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\main.o: D:\acsbooks\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\main.o: .\hardware\key.h
+.\objects\main.o: .\hardware\led.h
+.\objects\main.o: D:\acsbooks\ARM\ARMCC\Bin\..\include\string.h

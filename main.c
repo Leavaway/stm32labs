@@ -3,48 +3,28 @@
 #include "OLED.h"
 #include "serial.h"
 #include "stdio.h"
-#include "stdarg.h"
+#include "key.h"
+#include "led.h"
+#include "string.h"
 
+uint8_t Serial_TxPacket[4];
+char Serial_RxPacket[100];
 uint16_t RxData;
-
-void Serial_Printf(char *format, ...){
-	char String[100];
-	va_list arg;
-	va_start(arg, format);
-	vsprintf(String, format, arg);
-	va_end(arg);
-	Serial_SendString(String);
-}
-
+uint16_t keynum;
 
 int main(void) {
 	OLED_Init();
-
+	LED_Init();
 	Serial_Init();
 	
-	Serial_SendData(0x42);
-	uint8_t arr[] = {0x41,0x42,0x43};
-	Serial_SendArray(arr, 3);
-	Serial_SendString("Helloworld\r\n");
-	int16_t i = 16/10;
-	Serial_SendNum(12345,5);
-	//printf("num=%d\r\n",777);
+	OLED_ShowString(1, 1, "TxPacket");
+	OLED_ShowString(3, 1, "RxPacket");
 	
-	char String[100];
-	sprintf(String, "Num=%d\r\n", 888);
-	Serial_SendString(String);
-	
-	Serial_Printf("Num=%d\r\n", 999);
-    while(1){
-		/*
-		if(USART_GetFlagStatus(USART1, USART_FLAG_RXNE)){
-			RxData = USART_ReceiveData(USART1);
-			OLED_ShowHexNum(1,1,RxData,2);
-		}
-		*/
-	}; // Add infinite loop at the end to keep the microcontroller running
-
-    return 0;
+	while (1)
+	{
+		
+		Delay_ms(100000);	
+	}
 }
 
 /*
@@ -63,10 +43,58 @@ int fputc(int ch, FILE *f){
 */
 
 void USART1_IRQHandler(void){
-	OLED_ShowString(2,1,"Receive");
+	static uint8_t status = 0;
 	RxData = USART_ReceiveData(USART1);
-	Serial_SendData(RxData);
-	OLED_ShowHexNum(1,1,RxData,2);
+	static uint8_t i = 0;
+	switch(status){
+		case(0):
+			if(RxData == '@'){
+				status = 1;
+			}
+			break;
+		case(1):
+			if(RxData == '\r'){
+				status = 2;
+			}else{
+				Serial_RxPacket[i] = RxData;
+				i++;
+			}
+			break;
+		case(2):
+			if(RxData == '\n'){
+				//Serial_RxPacket[i] = '\n';
+				i = 0;
+				status = 0;
+				OLED_ShowString(4, 1, "                ");
+				OLED_ShowString(4, 1, Serial_RxPacket);
+				
+				if (strcmp(Serial_RxPacket, "LED_ON") == 0)
+				{
+					LED1_ON();
+					Serial_SendString("LED_ON_OK\r\n");
+					OLED_ShowString(2, 1, "                ");
+					OLED_ShowString(2, 1, "LED_ON_OK");
+				}
+				else if (strcmp(Serial_RxPacket, "LED_OFF") == 0)
+				{
+					LED1_OFF();
+					Serial_SendString("LED_OFF_OK\r\n");
+					OLED_ShowString(2, 1, "                ");
+					OLED_ShowString(2, 1, "LED_OFF_OK");
+				}
+				else
+				{
+					Serial_SendString("ERROR_COMMAND\r\n");
+					OLED_ShowString(2, 1, "                ");
+					OLED_ShowString(2, 1, "ERROR_COMMAND");
+				}
+			}
+			break;
+	}
+	
+	
 }
+
+
 
 

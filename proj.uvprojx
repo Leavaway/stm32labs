@@ -805,6 +805,16 @@
               <FileType>5</FileType>
               <FilePath>.\hardware\serial.h</FilePath>
             </File>
+            <File>
+              <FileName>led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\hardware\led.c</FilePath>
+            </File>
+            <File>
+              <FileName>led.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\hardware\led.h</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
