@@ -816,16 +816,6 @@
               <FilePath>.\hardware\led.h</FilePath>
             </File>
             <File>
-              <FileName>myI2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\hardware\myI2c.c</FilePath>
-            </File>
-            <File>
-              <FileName>myI2c.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\hardware\myI2c.h</FilePath>
-            </File>
-            <File>
               <FileName>MPU6050.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\hardware\MPU6050.c</FilePath>
