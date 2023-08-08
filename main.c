@@ -1,29 +1,31 @@
 #include "stm32f10x.h"                  // Device header
 #include "Delay.h"
 #include "OLED.h"
-#include "serial.h"
-#include "stdio.h"
-#include "key.h"
-#include "led.h"
-#include "string.h"
+#include "MPU6050.h"
 
-uint8_t Serial_TxPacket[4];
-char Serial_RxPacket[100];
-uint16_t RxData;
-uint16_t keynum;
+int16_t AX, AY, AZ, GX, GY, GZ;
 
 int main(void) {
 	OLED_Init();
-	LED_Init();
-	Serial_Init();
+	MPU6050_Init();
 	
-	OLED_ShowString(1, 1, "TxPacket");
-	OLED_ShowString(3, 1, "RxPacket");
+	MPU6050_WriteReg(0x6B,0x00);
+	
+	MPU6050_WriteReg(0x19,0xAA);
+	
+	
+	uint8_t i = MPU6050_ReadReg(0x19);
+	OLED_ShowHexNum(1,1,i,2);
 	
 	while (1)
 	{
-		
-		Delay_ms(100000);	
+		MPU6050_GetData(&AX, &AY, &AZ, &GX, &GY, &GZ);
+		OLED_ShowSignedNum(2, 1, AX, 5);
+		OLED_ShowSignedNum(3, 1, AY, 5);
+		OLED_ShowSignedNum(4, 1, AZ, 5);
+		OLED_ShowSignedNum(2, 8, GX, 5);
+		OLED_ShowSignedNum(3, 8, GY, 5);
+		OLED_ShowSignedNum(4, 8, GZ, 5);
 	}
 }
 
@@ -36,64 +38,6 @@ void TIM2_IRQHandler(void){
 }
 */
 
-/*
-int fputc(int ch, FILE *f){
-	Serial_SendData(ch);
-}
-*/
-
-void USART1_IRQHandler(void){
-	static uint8_t status = 0;
-	RxData = USART_ReceiveData(USART1);
-	static uint8_t i = 0;
-	switch(status){
-		case(0):
-			if(RxData == '@'){
-				status = 1;
-			}
-			break;
-		case(1):
-			if(RxData == '\r'){
-				status = 2;
-			}else{
-				Serial_RxPacket[i] = RxData;
-				i++;
-			}
-			break;
-		case(2):
-			if(RxData == '\n'){
-				//Serial_RxPacket[i] = '\n';
-				i = 0;
-				status = 0;
-				OLED_ShowString(4, 1, "                ");
-				OLED_ShowString(4, 1, Serial_RxPacket);
-				
-				if (strcmp(Serial_RxPacket, "LED_ON") == 0)
-				{
-					LED1_ON();
-					Serial_SendString("LED_ON_OK\r\n");
-					OLED_ShowString(2, 1, "                ");
-					OLED_ShowString(2, 1, "LED_ON_OK");
-				}
-				else if (strcmp(Serial_RxPacket, "LED_OFF") == 0)
-				{
-					LED1_OFF();
-					Serial_SendString("LED_OFF_OK\r\n");
-					OLED_ShowString(2, 1, "                ");
-					OLED_ShowString(2, 1, "LED_OFF_OK");
-				}
-				else
-				{
-					Serial_SendString("ERROR_COMMAND\r\n");
-					OLED_ShowString(2, 1, "                ");
-					OLED_ShowString(2, 1, "ERROR_COMMAND");
-				}
-			}
-			break;
-	}
-	
-	
-}
 
 
 

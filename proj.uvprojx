@@ -52,7 +52,7 @@
           <OutputName>proj</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
-          <CreateHexFile>0</CreateHexFile>
+          <CreateHexFile>1</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
           <ListingPath>.\Listings\</ListingPath>
@@ -814,6 +814,31 @@
               <FileName>led.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\hardware\led.h</FilePath>
+            </File>
+            <File>
+              <FileName>myI2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\hardware\myI2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>myI2c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\hardware\myI2c.h</FilePath>
+            </File>
+            <File>
+              <FileName>MPU6050.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\hardware\MPU6050.c</FilePath>
+            </File>
+            <File>
+              <FileName>MPU6050.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\hardware\MPU6050.h</FilePath>
+            </File>
+            <File>
+              <FileName>MPU6050_Reg.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\hardware\MPU6050_Reg.h</FilePath>
             </File>
           </Files>
         </Group>
