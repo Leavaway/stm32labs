@@ -1,33 +1,48 @@
 #include "stm32f10x.h"                  // Device header
 #include "Delay.h"
 #include "OLED.h"
-#include "MPU6050.h"
+#include "W25Q64.h"
 
-int16_t AX, AY, AZ, GX, GY, GZ;
+uint8_t MID;
+uint16_t DID;
 
-int main(void) {
+uint8_t ArrayWrite[] = {0x01, 0x02, 0x03, 0x04};
+uint8_t ArrayRead[4];
+
+int main(void)
+{
 	OLED_Init();
-	MPU6050_Init();
+	W25Q64_Init();
 	
-	MPU6050_WriteReg(0x6B,0x00);
+	OLED_ShowString(1, 1, "MID:   DID:");
+	OLED_ShowString(2, 1, "W:");
+	OLED_ShowString(3, 1, "R:");
 	
-	MPU6050_WriteReg(0x19,0xAA);
+	W25Q64_ReadID(&MID, &DID);
+	OLED_ShowHexNum(1, 5, MID, 2);
+	OLED_ShowHexNum(1, 12, DID, 4);
 	
+//	W25Q64_SectorErase(0x000000);
+//	W25Q64_PageProgram(0x000000, ArrayWrite, 4);
 	
-	uint8_t i = MPU6050_ReadReg(0x19);
-	OLED_ShowHexNum(1,1,i,2);
+	W25Q64_ReadData(0x000000, ArrayRead, 4);
+	
+	OLED_ShowHexNum(2, 3, ArrayWrite[0], 2);
+	OLED_ShowHexNum(2, 6, ArrayWrite[1], 2);
+	OLED_ShowHexNum(2, 9, ArrayWrite[2], 2);
+	OLED_ShowHexNum(2, 12, ArrayWrite[3], 2);
+	
+	OLED_ShowHexNum(3, 3, ArrayRead[0], 2);
+	OLED_ShowHexNum(3, 6, ArrayRead[1], 2);
+	OLED_ShowHexNum(3, 9, ArrayRead[2], 2);
+	OLED_ShowHexNum(3, 12, ArrayRead[3], 2);
 	
 	while (1)
 	{
-		MPU6050_GetData(&AX, &AY, &AZ, &GX, &GY, &GZ);
-		OLED_ShowSignedNum(2, 1, AX, 5);
-		OLED_ShowSignedNum(3, 1, AY, 5);
-		OLED_ShowSignedNum(4, 1, AZ, 5);
-		OLED_ShowSignedNum(2, 8, GX, 5);
-		OLED_ShowSignedNum(3, 8, GY, 5);
-		OLED_ShowSignedNum(4, 8, GZ, 5);
+		
 	}
 }
+
 
 /*
 void TIM2_IRQHandler(void){

@@ -30,4 +30,4 @@
 .\objects\main.o: .\lib\misc.h
 .\objects\main.o: .\lib\Delay.h
 .\objects\main.o: .\hardware\OLED.h
-.\objects\main.o: .\hardware\MPU6050.h
+.\objects\main.o: .\hardware\W25Q64.h
