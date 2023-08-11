@@ -1,5 +1,5 @@
 Dependencies for Project 'proj', Target 'Target 1': (DO NOT MODIFY !)
-F (.\main.c)(0x64D477D0)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\start -I .\user -I .\lib -I .\system -I .\hardware-I.\RTE\_Target_1-ID:\acsbooks\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\acsbooks\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\main.c)(0x64D5A0BC)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\start -I .\user -I .\lib -I .\system -I .\hardware-I.\RTE\_Target_1-ID:\acsbooks\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\acsbooks\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (.\start\stm32f10x.h)(0x4D783CB4)
 I (.\start\core_cm3.h)(0x4D523B58)
 I (D:\acsbooks\ARM\ARMCC\include\stdint.h)(0x588B8344)
@@ -1237,7 +1237,7 @@ I (.\lib\misc.h)(0x4D783BB4)
 I (hardware\MPU6050_reg.h)(0x63985438)
 F (.\hardware\MPU6050.h)(0x64D127C7)()
 F (.\hardware\MPU6050_Reg.h)(0x63985438)()
-F (.\hardware\MySPI.c)(0x64D44170)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\start -I .\user -I .\lib -I .\system -I .\hardware-I.\RTE\_Target_1-ID:\acsbooks\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\acsbooks\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\myspi.o --omf_browse .\objects\myspi.crf --depend .\objects\myspi.d)
+F (.\hardware\MySPI.c)(0x64D5A04F)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\start -I .\user -I .\lib -I .\system -I .\hardware-I.\RTE\_Target_1-ID:\acsbooks\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\acsbooks\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\myspi.o --omf_browse .\objects\myspi.crf --depend .\objects\myspi.d)
 I (.\start\stm32f10x.h)(0x4D783CB4)
 I (.\start\core_cm3.h)(0x4D523B58)
 I (D:\acsbooks\ARM\ARMCC\include\stdint.h)(0x588B8344)

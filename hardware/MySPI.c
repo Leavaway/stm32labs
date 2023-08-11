@@ -5,37 +5,42 @@ void MySPI_W_SS(uint8_t BitValue)
 	GPIO_WriteBit(GPIOA, GPIO_Pin_4, (BitAction)BitValue);
 }
 
-void MySPI_W_SCK(uint8_t BitValue)
-{
-	GPIO_WriteBit(GPIOA, GPIO_Pin_5, (BitAction)BitValue);
-}
-
-void MySPI_W_MOSI(uint8_t BitValue)
-{
-	GPIO_WriteBit(GPIOA, GPIO_Pin_7, (BitAction)BitValue);
-}
-
-uint8_t MySPI_R_MISO(void)
-{
-	return GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_6);
-}
 
 void MySPI_Init(void){
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA,ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SPI1, ENABLE);
 	
 	GPIO_InitTypeDef GPIO_InitStructure;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4|GPIO_Pin_5|GPIO_Pin_7;
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_Init(GPIOA, &GPIO_InitStructure);
 	
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5|GPIO_Pin_7;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_Init(GPIOA, &GPIO_InitStructure);
+
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_Init(GPIOA, &GPIO_InitStructure);
 	
+	SPI_InitTypeDef SPI_InitStructure;
+	SPI_InitStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_128;
+	SPI_InitStructure.SPI_CPHA = SPI_CPHA_1Edge;
+	SPI_InitStructure.SPI_CPOL = SPI_CPOL_Low;
+	SPI_InitStructure.SPI_CRCPolynomial = 7;
+	SPI_InitStructure.SPI_DataSize = SPI_DataSize_8b;
+	SPI_InitStructure.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
+	SPI_InitStructure.SPI_FirstBit = SPI_FirstBit_MSB;
+	SPI_InitStructure.SPI_Mode = SPI_Mode_Master;
+	SPI_InitStructure.SPI_NSS = SPI_NSS_Soft;
+	SPI_Init(SPI1, &SPI_InitStructure);
+	
+	SPI_Cmd(SPI1, ENABLE);
+	
 	MySPI_W_SS(1);
-	MySPI_W_SCK(0);
 }
 
 void MySPI_Start(void){
@@ -47,15 +52,11 @@ void MySPI_Stop(void){
 }
 
 uint8_t MySPI_SwapByte(uint8_t ByteSend){
-	uint8_t i;
-	for(i = 0;i<8;i++){
-		MySPI_W_MOSI(ByteSend & 0x80);
-		ByteSend <<= 1;
-		MySPI_W_SCK(1);
-		ByteSend |= MySPI_R_MISO();
-		MySPI_W_SCK(0);
-
-	}
-	return ByteSend;
-
+	while(!SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_TXE));
+	
+	SPI_I2S_SendData(SPI1, ByteSend);
+	
+	while(!SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_RXNE));
+	
+	return SPI_I2S_ReceiveData(SPI1);
 }
