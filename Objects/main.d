@@ -30,4 +30,5 @@
 .\objects\main.o: .\lib\misc.h
 .\objects\main.o: .\lib\Delay.h
 .\objects\main.o: .\hardware\OLED.h
-.\objects\main.o: .\hardware\W25Q64.h
+.\objects\main.o: .\hardware\key.h
+.\objects\main.o: .\system\myRTC.h

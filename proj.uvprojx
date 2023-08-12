@@ -705,6 +705,16 @@
               <FileType>5</FileType>
               <FilePath>.\system\mydma.h</FilePath>
             </File>
+            <File>
+              <FileName>myRTC.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\system\myRTC.c</FilePath>
+            </File>
+            <File>
+              <FileName>myRTC.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\system\myRTC.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

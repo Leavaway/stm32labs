@@ -1,48 +1,35 @@
 #include "stm32f10x.h"                  // Device header
 #include "Delay.h"
 #include "OLED.h"
-#include "W25Q64.h"
-
-uint8_t MID;
-uint16_t DID;
-
-uint8_t ArrayWrite[] = {0x02, 0x02, 0x02, 0x02};
-uint8_t ArrayRead[4];
+#include "key.h"
+#include "myRTC.h"
 
 int main(void)
 {
 	OLED_Init();
-	W25Q64_Init();
-	
-	OLED_ShowString(1, 1, "MID:   DID:");
-	OLED_ShowString(2, 1, "W:");
-	OLED_ShowString(3, 1, "R:");
-	
-	W25Q64_ReadID(&MID, &DID);
-	OLED_ShowHexNum(1, 5, MID, 2);
-	OLED_ShowHexNum(1, 12, DID, 4);
-	
-//	W25Q64_SectorErase(0x000000);
- 	W25Q64_PageProgram(0x000000, ArrayWrite, 4);
-	
-	W25Q64_ReadData(0x000000, ArrayRead, 4);
-	
-	OLED_ShowHexNum(2, 3, ArrayWrite[0], 2);
-	OLED_ShowHexNum(2, 6, ArrayWrite[1], 2);
-	OLED_ShowHexNum(2, 9, ArrayWrite[2], 2);
-	OLED_ShowHexNum(2, 12, ArrayWrite[3], 2);
-	
-	OLED_ShowHexNum(3, 3, ArrayRead[0], 2);
-	OLED_ShowHexNum(3, 6, ArrayRead[1], 2);
-	OLED_ShowHexNum(3, 9, ArrayRead[2], 2);
-	OLED_ShowHexNum(3, 12, ArrayRead[3], 2);
+	MyRTC_Init(); 
+	MyRTC_SetTime();
+	OLED_ShowString(1, 1, "Date:XXXX-XX-XX");
+	OLED_ShowString(2, 1, "Time:XX:XX:XX");
+	OLED_ShowString(3, 1, "CNT :");
+	OLED_ShowString(4, 1, "DIV :");
 	
 	while (1)
 	{
+		MyRTC_ReadTime();
 		
+		OLED_ShowNum(1, 6, MyRTC_Time[0], 4);
+		OLED_ShowNum(1, 11, MyRTC_Time[1], 2);
+		OLED_ShowNum(1, 14, MyRTC_Time[2], 2);
+		
+		OLED_ShowNum(2, 6, MyRTC_Time[3], 2);
+		OLED_ShowNum(2, 9, MyRTC_Time[4], 2);
+		OLED_ShowNum(2, 12, MyRTC_Time[5], 2);
+		
+		OLED_ShowNum(3, 6, RTC_GetCounter(), 10);
+		OLED_ShowNum(4, 6, RTC_GetDivider(), 10);
 	}
 }
-
 
 /*
 void TIM2_IRQHandler(void){

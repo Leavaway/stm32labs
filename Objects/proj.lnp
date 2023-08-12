@@ -30,6 +30,7 @@
 ".\objects\delay.o"
 ".\objects\timer.o"
 ".\objects\mydma.o"
+".\objects\myrtc.o"
 ".\objects\key.o"
 ".\objects\buzzer.o"
 ".\objects\oled.o"
